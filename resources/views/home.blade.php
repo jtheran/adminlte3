@@ -1,9 +1,7 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
-
 @section('content_header')
-    <h1 class="m-0 text-dark">Dashboard</h1>
+    <h1 class="m-0 text-danger">Dashboard</h1>
 @stop
 
 @section('content')
@@ -16,4 +14,9 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/styles/barcode-create.css">
+    <link rel="icon" href="/logo.jpg" type="image/jpeg">
 @stop

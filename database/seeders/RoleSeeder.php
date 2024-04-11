@@ -27,6 +27,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.parents.create']);
         Permission::create(['name' => 'admin.parents.destroy']);
 
+        Permission::create(['name' => 'admin.user']);
+        Permission::create(['name' => 'admin.user.edit']);
+        Permission::create(['name' => 'admin.user.create']);
+        Permission::create(['name' => 'admin.user.destroy']);
+
 
 
         $roleAdmin = Role::find(1);
@@ -34,7 +39,7 @@ class RoleSeeder extends Seeder
         $roleAdmin->syncPermissions($permissionsAdmin);
 
         $roleUser = Role::find(2);
-        $permissionsUser = Permission::whereIn('name', ['admin.parents', 'admin.parents.edit', 'admin.parents.create', 'admin.children', 'admin.children.edit', 'admin.children.create'])->get();
+        $permissionsUser = Permission::whereIn('name', ['admin.parents', 'admin.parents.edit', 'admin.parents.create', 'admin.children', 'admin.children.edit', 'admin.children.create', 'admin.user'])->get();
         $roleUser->syncPermissions($permissionsUser);
 
     }

@@ -26,7 +26,7 @@ class ChildrenController extends Controller
      */
     public function create()
     {
-        //
+        return view("create-children");
     }
 
     /**

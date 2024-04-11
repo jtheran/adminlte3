@@ -311,14 +311,25 @@ return [
             'text' => 'search',
         ],
         [
+            'text' => 'USUARIOS',
+            'url' => 'admin/user',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        ['header' => 'LISTAS DE PERSONAS'],
+        [
             'text' => 'LISTA DE NIÑOS',
             'url' => 'admin/children',
+            'icon' => 'fas fa-fw fa-list',
+        ],
+        [
+            'text' => 'LISTA DE PADRES',
+            'url' => 'admin/parent',
             'icon' => 'fas fa-fw fa-list',
         ],
         ['header' => 'CONFIGURACION DE CUENTA'],
         [
             'text' => 'PERFIL',
-            'url' => 'admin/profile',
+            'url' => 'admin/user/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

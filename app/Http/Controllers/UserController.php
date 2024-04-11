@@ -1,32 +1,42 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Parents;
+
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
-class ParentController extends Controller
+use Illuminate\Support\Facades\Hash;
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    public $search;
+
+    public function updatingSearch(){
+        $this->resetPage();
+    }
+
     public function index()
     {
         Paginator::defaultView('pagination::bootstrap-5');
 
-        $parent = Parents::select()->paginate(10);
-        return view("list-parents", compact("parent"));
+
+
+        $user = User::where('name', 'LIKE', '%' . $this->search . '%')->select()->paginate(10);
+        return view("list-users", compact("user"));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
      */
     public function create()
     {
-        return view("create-parent");
+        return view("create-user");
     }
 
     /**
@@ -37,11 +47,9 @@ class ParentController extends Controller
         try {
             DB::beginTransaction();
             $validator = Validator::make($request->all(), [
-                'firstname' => 'required|string|max:255',
-                'lastname' => 'required|string|max:255',
-                'identification' => 'required|string|max:255',
-                'eps' => 'required|string|max:255',
-                'contact' => 'required|string|max:255',
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|max:255',
+                'password' => 'required|string|max:255',
                 // Puedes agregar más reglas de validación según tus necesidades
             ]);
 
@@ -51,18 +59,17 @@ class ParentController extends Controller
                             ->withInput();
             }
 
-            Parents::create([
-                'firstname' => $request->firstname,
-                'lastname' => $request->lastname,
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
                 'identification' => $request->identification,
                 'identification_type' => $request->identification_type,
-                'job' => $request->job,
+                'area_department' => $request->area_department,
                 'position' => $request->position,
-                'eps' => $request->eps,
                 'contact' => $request->contact,
                 'age' => $request->age,
                 'address' => $request->address,
-                'email' => $request->email,
 
             ])->save();
 
@@ -73,15 +80,16 @@ class ParentController extends Controller
             DB::rollBack();
         }
 
-        return redirect()->route('admin.parent.index');
+        return redirect()->route('admin.user.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Parents $Parents)
+    public function show()
     {
-        //
+        $user = Auth::user();
+        return view("profile", compact("user"));
     }
 
     /**
@@ -89,8 +97,8 @@ class ParentController extends Controller
      */
     public function edit($id)
     {
-        $parent = Parents::find($id);
-        return view("parents-update", compact("parent"));
+        $user = User::find($id);
+        return view("user-update", compact("user"));
     }
 
     /**
@@ -98,18 +106,22 @@ class ParentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $parent = Parents::find($id);
-        $parent->fill($request->all())->save();
-        return redirect()->route('admin.parent.index');
+        $user = User::find($id);
+        $user->fill($request->all())->save();
+        return redirect()->route('admin.user.index');
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        $parent = Parents::find($id);
-        $parent->delete();
-        return redirect()->route('admin.parent.index');
+        $user = User::find($id);
+        if($id!= 1){
+            $user->delete();
+            return redirect()->route('admin.user.index');
+        }else{
+            return redirect()->route('admin.user.index');
+        }
+
     }
 }
