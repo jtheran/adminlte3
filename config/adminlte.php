@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'FunderectgERP',
+    'title' => 'ERPFunderectg',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -135,7 +135,7 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-primary',
+    'usermenu_header_class' => 'bg-success',
     'usermenu_image' => false,
     'usermenu_desc' => false,
     'usermenu_profile_url' => false,
@@ -198,7 +198,7 @@ return [
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar-white navbar-success',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -219,7 +219,7 @@ return [
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
-    'sidebar_scrollbar_theme' => 'os-theme-light',
+    'sidebar_scrollbar_theme' => 'bg-success',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
     'sidebar_nav_animation_speed' => 300,
@@ -238,10 +238,10 @@ return [
 
     'right_sidebar' => false,
     'right_sidebar_icon' => 'fas fa-cogs',
-    'right_sidebar_theme' => 'dark',
+    'right_sidebar_theme' => 'bg-success',
     'right_sidebar_slide' => true,
     'right_sidebar_push' => true,
-    'right_sidebar_scrollbar_theme' => 'os-theme-light',
+    'right_sidebar_scrollbar_theme' => 'bg-success',
     'right_sidebar_scrollbar_auto_hide' => 'l',
 
     /*
@@ -311,43 +311,20 @@ return [
             'text' => 'search',
         ],
         [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
+            'text' => 'LISTA DE NIÑOS',
+            'url' => 'admin/children',
+            'icon' => 'fas fa-fw fa-list',
         ],
+        ['header' => 'CONFIGURACION DE CUENTA'],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
+            'text' => 'PERFIL',
             'url' => 'admin/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
+            'text' => 'CAMBIAR CONTRASEÑA',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text' => 'Barcode',
-            'icon' => 'fas fa-fw fa-list',
-            'submenu' => [
-                [
-                    'text' => 'List Barcodes',
-                    'icon' => 'fas fa-fw fa-barcode',
-                    'url' => 'admin/barcodes'
-                ],
-                [
-                    'text' => 'Create Barcodes',
-                    'icon' => 'fas fa-fw fa-chrome',
-                    'url' => 'admin/barcodes/create'
-                ]
-            ]
         ],
     ],
 

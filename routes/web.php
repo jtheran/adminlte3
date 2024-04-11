@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ChildrenController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +32,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         return view('barcode-create');
     });
 
-    Route::get('profile', function () {
+    Route::get('/profile', function () {
         return view('profile');
     });
+
+    Route::resource('children', ChildrenController::class)->names('children');
 
 });
 
