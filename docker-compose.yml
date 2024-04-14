@@ -1,49 +1,136 @@
-version: '3.8'
+
 services:
-# simple myself setup
-    mysql:
-        image: mysql:5.7
+
+    ####################################################################################################
+    # PHP
+    ####################################################################################################
+    php:
+        build: .docker/php
         ports:
-            - "3307:3306"
-        container_name: db-ERP
+            - 5173:5173
+        volumes:
+            - .:/var/www:cached
+
+    ####################################################################################################
+    # Nginx
+    ####################################################################################################
+    nginx:
+        image: nginx
+        ports:
+            - 80:80
+        volumes:
+            - .:/var/www
+            - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - .docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+        depends_on:
+            - php
+
+    ####################################################################################################
+    # DATABASE (MySQL)
+    ####################################################################################################
+    db:
+        image: mysql:8.1
+        ports:
+            - 3306:3306
+        volumes:
+            - .docker/db/data:/var/lib/mysql
+            - .docker/logs:/var/log/mysql
+            - .docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+            - .docker/db/sql:/docker-entrypoint-initdb.d
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: ERPFunderectg
-            MYSQL_USER: erp
-            MYSQL_PASSWORD: erp
+            MYSQL_DATABASE: refactorian
+            MYSQL_USER: refactorian
+            MYSQL_PASSWORD: refactorian
 
-# grafana used for graphing mysql data
-    grafana:
-        image: grafana/grafana-enterprise
+    ####################################################################################################
+    # phpMyAdmin
+    ####################################################################################################
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
         ports:
-            - '3500:3000'
-        restart: unless-stopped
-        container_name: grafana-dashboard
-        user: '0'
+            - 8080:80
+        links:
+            - db
         environment:
-            GF_INSTALL_PLUGINS: percona-percona-app, grafana-clock-panel, grafana-simple-json-datasource
+            PMA_HOST: db
+            PMA_PORT: 3306
+            PMA_ARBITRARY: 1
         volumes:
-            - grafana-storage:/var/lib/grafana
-volumes:
-    grafana-storage: {}
+            - .docker/phpmyadmin/sessions:/sessions
 
-# tool to connect to mysql instance, and allow prometheus to collect mysql stats
-    # prom_mysql_exporter:
-    #     image: prom/mysqld-exporter
-    #     links:
-    #         - mysql
+    ####################################################################################################
+    # Adminer
+    ####################################################################################################
+    # adminer:
+    #     image: adminer
     #     ports:
-    #         - '9104:9104'
-    #     environment:
-    #         DATA_SOURCE_NAME: root:@(mysql:3306)/adminlte3
-    #     command: /bin/mysqld_exporter collect.binlog_size=true collect.info_schema.processlist=true
+    #         - 9090:8080
+    #     depends_on:
+    #     - db
 
-# prometheus stores and handles timeseries data for statistics around mysql
-    # prometheus:
-    #     image: prom/prometheus
+    ####################################################################################################
+    # Mailpit
+    ####################################################################################################
+    mail:
+        image: axllent/mailpit:latest
+        ports:
+        - 8025:8025
+        - 1025:1025
+
+    ####################################################################################################
+    # Redis
+    ####################################################################################################
+    redis:
+        image: redis:latest
+        command: redis-server --appendonly yes
+        volumes:
+        - .docker/redis/data:/data
+        ports:
+        - 6379:6379
+
+    # ####################################################################################################
+    # # DATABASE (MariaDB)
+    # ####################################################################################################
+    # db:
+    #     image: mariadb:10.11
+    #     ports:
+    #         - 3306:3306
     #     volumes:
-    #         - ./prometheus:/etc/prometheus
-    #     links:
-    #         - prom_mysql_exporter
+    #         - .docker/db/data:/var/lib/mysql
+    #         - .docker/logs:/var/log/mysql
+    #         - .docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+    #         - .docker/db/sql:/docker-entrypoint-initdb.d
+    #     environment:
+    #         MYSQL_ROOT_PASSWORD: root
+    #         MYSQL_DATABASE: laravel_db_name
+    #         MYSQL_USER: laravel_db_user
+    #         MYSQL_PASSWORD: laravel_db_pass
+
+    ####################################################################################################
+    # PostgreSQL
+    ####################################################################################################
+    # db:
+    #     image: postgres:16
     #     ports:
-    #         - '9090:9090'
+    #         - 5432:5432
+    #     volumes:
+    #         - .docker/db/data:/var/lib/postgresql/data
+    #         - .docker/db/sql:/docker-entrypoint-initdb.d
+    #     environment:
+    #         - POSTGRES_USER=refactorian
+    #         - POSTGRES_PASSWORD=refactorian
+    #         - POSTGRES_DB=refactorian
+
+    ####################################################################################################
+    # pgAdmin
+    ####################################################################################################
+    # pgadmin:
+    #     image: dpage/pgadmin4
+    #     ports:
+    #         - 5050:80
+    #     environment:
+    #         - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+    #         - PGADMIN_DEFAULT_PASSWORD=password
+    #     depends_on:
+    #         - db

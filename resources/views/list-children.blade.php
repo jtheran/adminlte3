@@ -18,7 +18,7 @@
                 </div>
             @endcan
         </div>
-    </div>  
+    </div>
     <div class="card-body table-responsive p-0">
         <table class="table table-hover text-nowrap table-hover table-success table-striped-columns border-danger">
             <thead>
@@ -76,6 +76,5 @@
 
 
 @section('css')
-    <link rel="stylesheet" href="/styles/barcode-create.css">
     <link rel="icon" href="/logo.jpg" type="image/jpeg">
 @stop

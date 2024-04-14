@@ -5,7 +5,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/styles/barcode-create.css">
+    <link rel="stylesheet" href="/styles/profile.css">
     <link rel="icon" href="/logo.jpg" type="image/jpeg">
 @stop
 
@@ -13,7 +13,7 @@
 {!! Form::open(['route' => ['admin.user.update', $user->id], 'method' => 'PUT']) !!}
 <div class="card">
         <div class="card-body">
-            <div class="row">   
+            <div class="row">
                 <div class="col-8 col-md-8">
                     <div class="form-group">
                         {{ Form::label('NOMBRE:', null, ['class' => 'control-label']) }}

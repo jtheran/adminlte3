@@ -8,7 +8,7 @@
 {!! Form::open(['route' => ['admin.parent.update', $parent->id], 'method' => 'PUT']) !!}
 <div class="card">
         <div class="card-body">
-            <div class="row">   
+            <div class="row">
                 <div class="col-8 col-md-8">
                     <div class="form-group">
                         {{ Form::label('NOMBRE:', null, ['class' => 'control-label']) }}
@@ -81,6 +81,5 @@
 
 
 @section('css')
-    <link rel="stylesheet" href="/styles/barcode-create.css">
     <link rel="icon" href="/logo.jpg" type="image/jpeg">
 @stop

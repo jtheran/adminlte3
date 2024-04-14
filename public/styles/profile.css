@@ -8,15 +8,11 @@
     color: #ffffff; /* Blanco */
 }
 
-.login-page {
-    background-image: url('../assets/office.jpg') !important;
-}
-
-.login-box, .card-header, .card-footer, .card-body  {
+.card-header, .card-footer, .card-body  {
     background-color: #28a745; /* Verde */
     color: #ffffff; /* Blanco */
 }
 
-a {
-    color: #ffffff; /* Blanco */
+.content-wrapper {
+    background-image: url('../assets/office.jpg');
 }

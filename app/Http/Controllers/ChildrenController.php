@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Children;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 
 
@@ -34,7 +36,28 @@ class ChildrenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $user = Children::create([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'identification' => $request->identification,
+                'identification_type' => $request->identification_type,
+                'eps' => $request->eps,
+                'age' => $request->age,
+                'address' => $request->address,
+
+            ])->save();
+
+            DB::commit();
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            DB::rollBack();
+        }
+
+        return redirect()->route('admin.children.index');
     }
 
     /**
