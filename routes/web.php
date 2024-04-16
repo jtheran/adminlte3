@@ -25,6 +25,7 @@ Auth::routes();
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
 
     Route::get('/home', [HomeController::class,'index'])->name('home');
+    Route::get('/calendar', [HomeController::class,'calendar'])->name('calendar');
 
     Route::get('/barcodes', function () {
         return view('barcode');
@@ -41,6 +42,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('children', ChildrenController::class)->names('children');
     Route::resource('user', UserController::class)->names('user');
     Route::resource('parent', ParentController::class)->names('parent');
+    Route::resource('event', HomeController::class)->names('event');
 
 });
 

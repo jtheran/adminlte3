@@ -65,7 +65,6 @@
                                     {!! Form::close() !!}
                                     <a href="{{ route('admin.parent.edit', $items->id) }}"
                                         class="btn btn-sm btn-warning"><i class="nav-icon fas fa-edit"></i></a>
-
                                 @endcan
                             </div>
                         </td>

@@ -311,6 +311,16 @@ return [
             'text' => 'search',
         ],
         [
+            'text' => 'DASHBOARD',
+            'url' => 'admin/dashboard',
+            'icon' => 'fas fa-fw fa-chart-line',
+        ],
+        [
+            'text' => 'CALENDARIO',
+            'url' => 'admin/calendar',
+            'icon' => 'fas fa-fw fa-calendar',
+        ],
+        [
             'text' => 'USUARIOS',
             'url' => 'admin/user',
             'icon' => 'fas fa-fw fa-users',

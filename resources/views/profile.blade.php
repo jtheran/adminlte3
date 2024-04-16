@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1 class="m-0 text-danger">PROFILE</h1>
+    <h1 class="m-0 text-danger">PERFIL</h1>
 @stop
 
 @section('css')
