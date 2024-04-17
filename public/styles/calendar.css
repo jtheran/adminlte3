@@ -1,0 +1,35 @@
+.btn-custom {
+    padding: 0.25rem 0.5rem; /* Ajusta según necesidad */
+    line-height: 1.5; /* Asegura que el texto y los iconos se alineen verticalmente */
+    font-size: 0.875rem; /* Asegura el mismo tamaño de fuente */
+}
+
+.btn-custom, form {
+    display: inline-block; /* Asegura que el formulario no rompa la línea */
+    vertical-align: middle; /* Alinea verticalmente los botones si tienen diferentes alturas */
+    margin-right: 5px; /* Añade un pequeño margen a la derecha para separación */
+    padding: 0.25rem 0.5rem;  /* Reduce el padding para hacer el botón más pequeño */
+    font-size: 0.8rem;  
+}
+
+.nav-icon {
+    margin-right:8px;  /* Elimina cualquier margen adicional alrededor de los íconos */
+    font-size: 16px; /* Ajusta esto según tus necesidades */
+}
+
+.margin-custom {
+    margin-right: 10px;  /* Ajusta este valor según tus necesidades */
+}
+
+.btn-icon-plus {
+    background-color: #28a745;  /* Un verde similar al de Bootstrap .btn-success */
+    color: white;              /* Icono de color blanco */
+    padding: 10px 15px;        /* Ajusta el padding para hacer el botón más grande o más pequeño */
+    border-radius: 5px;        /* Bordes redondeados */
+    display: inline-block;     /* Asegura que se comporte como un botón */
+    margin-right: 10px;        /* Espacio a la derecha si hay más elementos */
+}
+
+.btn-icon-plus i {
+    margin-right: 5px;         /* Espacio opcional entre el icono y el texto, si añades texto */
+}

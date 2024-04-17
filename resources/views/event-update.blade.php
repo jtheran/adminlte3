@@ -40,7 +40,7 @@
 <div class="row">
             <div class="col-8">
                 <div class="float-right">
-                    <a href="{{ route('admin.event.calendar') }}" class="btn btn-outline-danger"> Cancelar</a>
+                    <a href="{{ route('admin.event.index') }}" class="btn btn-outline-danger"> Cancelar</a>
                     <button type="submit" class="btn btn-success" >Guardar</button>
                 </div>
             </div>

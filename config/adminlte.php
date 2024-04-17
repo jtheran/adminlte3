@@ -317,7 +317,7 @@ return [
         ],
         [
             'text' => 'CALENDARIO',
-            'url' => 'admin/calendar',
+            'url' => 'admin/event',
             'icon' => 'fas fa-fw fa-calendar',
         ],
         [

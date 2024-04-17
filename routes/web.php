@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,6 @@ Auth::routes();
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
 
     Route::get('/home', [HomeController::class,'index'])->name('home');
-    Route::get('/calendar', [HomeController::class,'calendar'])->name('calendar');
 
     Route::get('/barcodes', function () {
         return view('barcode');
@@ -42,7 +42,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('children', ChildrenController::class)->names('children');
     Route::resource('user', UserController::class)->names('user');
     Route::resource('parent', ParentController::class)->names('parent');
-    Route::resource('event', HomeController::class)->names('event');
+    Route::resource('event', EventController::class)->names('event');
 
 });
 
