@@ -69,6 +69,23 @@
                 eventColor: '#28a745',
                 eventBorderColor: '#000',
                 events: @json($events),
+                eventContent: function(arg) {
+                    // Crea un elemento HTML que contenga el título y la descripción del evento
+                    var element = document.createElement('div');
+                    var hr = document.createElement('hr');
+                    var title = document.createElement('b');
+                    title.textContent = arg.event.title;
+
+                    var description = document.createElement('div');
+                    description.textContent = arg.event.extendedProps.description; // Asumiendo que la descripción está en extendedProps
+                    description.style.fontSize = 'em'; // Puedes personalizar el estilo como prefieras
+
+                    element.appendChild(title);
+                    element.appendChild(hr);
+                    element.appendChild(description);
+
+                    return { domNodes: [element] };
+                }
             });
             calendar.on('eventClick', function(info) {
                 const event = info.event;

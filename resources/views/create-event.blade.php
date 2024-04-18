@@ -12,7 +12,7 @@
                 <div class="col-8 col-md-8">
                     <div class="form-group">
                         {{ Form::label('TITULO:', null, ['class' => 'control-label']) }}
-                        {{ Form::text('title', "", array_merge(['class' => 'form-control'])) }}
+                        {{ Form::text('event', "", array_merge(['class' => 'form-control'])) }}
                     </div>
                 </div>
                 <div class="col-8 col-md-8">

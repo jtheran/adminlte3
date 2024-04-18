@@ -29,10 +29,10 @@ class EventController extends Controller
     public function store(Request $request)
     {
         try {
-            DB::beginTransaction();
+            
             $validator = Validator::make($request->all(), [
-                'title' => 'required|string|max:255',
-                'start' => 'required|string|max:255',
+                'event' => 'required|string|max:255',
+                'start_date' => 'required|string|max:255',
                 // Puedes agregar más reglas de validación según tus necesidades
             ]);
 
@@ -42,22 +42,13 @@ class EventController extends Controller
                             ->withInput();
             }
 
-            Event::create([
-                'event' => $request->event,
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
-                'description' => $request->description,
-
-            ])->save();
-
-            DB::commit();
+            Event::create($request->all());
+            return redirect()->route('admin.event.index');
 
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollBack();
         }
-
-        return redirect()->route('admin.event.index');
     }
     public function show($id)
     {

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\UserCreate;
+use Illuminate\Support\Facades\Notification;
 class UserController extends Controller
 {
     /**
@@ -71,8 +73,8 @@ class UserController extends Controller
                 'age' => $request->age,
                 'address' => $request->address,
 
-            ])->save();
-
+            ]);
+            
             DB::commit();
 
         } catch (\Throwable $th) {

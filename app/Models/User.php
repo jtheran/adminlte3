@@ -50,4 +50,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function routeNotificationForMail()
+    {
+        return $this->email;  // Asegúrate de que tu modelo de usuario tenga un atributo 'email'
+    }
 }
