@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'contact' => '3018122192',
             'age' => '28',
             'address' => 'parque de heredia 4',
-        ])->assignRole('admin');
+        ])->assignRole('Admin');
 
     }
 

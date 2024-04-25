@@ -26,4 +26,8 @@ class Parents extends Model
     ]; // Especifica los campos que se pueden asignar masivamente
 
     // Aquí puedes agregar relaciones, accesorios, mutadores y otros métodos personalizados del modelo
+    public function children()
+    {
+        return $this->belongsToMany(Children::class);
+    }
 }

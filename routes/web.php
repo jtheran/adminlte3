@@ -6,6 +6,7 @@ use App\Http\Controllers\ParentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\FileController;
 use App\Mail\Notification;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -34,10 +35,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         return view('barcode-create');
     });
 
-    Route::get('/profile', function () {
-        return view('profile');
-    });
-
     Route::get('/dashboard', function () {
         return view('dashboard');
     });
@@ -50,6 +47,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('user', UserController::class)->names('user');
     Route::resource('parent', ParentController::class)->names('parent');
     Route::resource('event', EventController::class)->names('event');
+    Route::resource('file', FileController::class)->names('file');
     Route::resource('mail', EmailController::class)->names('mail');
 
 

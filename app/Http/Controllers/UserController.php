@@ -74,7 +74,7 @@ class UserController extends Controller
                 'address' => $request->address,
 
             ]);
-            
+
             DB::commit();
 
         } catch (\Throwable $th) {

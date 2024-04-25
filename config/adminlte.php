@@ -325,6 +325,11 @@ return [
             'url' => 'admin/user',
             'icon' => 'fas fa-fw fa-users',
         ],
+        [
+            'text' => 'ARCHIVOS',
+            'url' => 'admin/file',
+            'icon' => 'fas fa-fw fa-file',
+        ],
         ['header' => 'LISTAS DE PERSONAS'],
         [
             'text' => 'LISTA DE NIÑOS',
@@ -341,11 +346,6 @@ return [
             'text' => 'PERFIL',
             'url' => 'admin/user/profile',
             'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'CAMBIAR CONTRASEÑA',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
         ],
     ],
 
